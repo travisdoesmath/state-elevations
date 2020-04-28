@@ -48,11 +48,11 @@ h1 {
 }
 
 .state {
-  fill:#888;
+  /* fill:#888; */
   stroke: var(--bg-color);
   stroke-width: 0.25px;
 }
-
+/* 
 .state:hover {
   fill: #AAA;
 }
@@ -63,7 +63,7 @@ h1 {
 
 .state.selected:hover {
   fill: var(--selected-hover)
-}
+} */
 
 
 

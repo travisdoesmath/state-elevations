@@ -41,12 +41,9 @@ class LineChart {
     }
 
     createScales() {
-        console.log(this.data);
         const xMax = d3.max(data.map(d => +d3.max(d.data, this.x)))
         const yMin = d3.min(data.map(d => +d3.min(d.data, this.y)))
         const yMax = d3.max(data.map(d => +d3.max(d.data, this.y)))
-
-        console.log(yMin, yMax);
 
         this.xScale = d3.scaleLinear()
             .range([0, this.width - this.margin.right - this.margin.left])
@@ -91,7 +88,7 @@ class LineChart {
             .classed('line', true)
             .classed('selected', d => this.selected.indexOf(d.state) !== -1)
             .attr('d', d => this.line(d.data))
-            .attr('stroke', d => this.color(d))
+            .attr('stroke', d => this.color(d.state))
             .attr('stroke-width', '2px')
 
     }

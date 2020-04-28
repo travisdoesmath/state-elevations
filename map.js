@@ -3,6 +3,7 @@ class Map {
     constructor(opts) {
         this.selected = opts.selected;
         this.element = opts.element;
+        this.color = opts.color;
         this.projection = d3.geoAlbers()
             .center([1,38.7])
             .scale(800)
@@ -63,7 +64,6 @@ class Map {
     }
 
     addStates() {
-        console.log(this.geoJson);
         let states = this.plot.selectAll('.state')
             .data(this.geoJson.features)
 
@@ -82,6 +82,7 @@ class Map {
                 global.state.indexOf(d.properties.name) === -1
             })
             .classed('selected', d => this.selected.indexOf(d.properties.name) !== -1)
+            .attr('fill', d => this.selected.indexOf(d.properties.name) !== -1 ? this.color(d.properties.name) : '#888')
 
     }
 }

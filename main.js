@@ -30,8 +30,6 @@ stateRegions = {
     'California': 'West', 
     'Oregon': 'West', 
     'Washington': 'West', 
-    'Alaska': 'West',
-    'Hawaii': 'West',
 
     'Delaware': 'South', 
     'Maryland': 'South', 
@@ -49,7 +47,6 @@ stateRegions = {
     'Louisiana': 'South', 
     'Texas': 'South',
     'Oklahoma': 'South',
-
 
     'Ohio': 'Midwest',
     'Michigan': 'Midwest',
@@ -71,27 +68,80 @@ stateRegions = {
     'Rhode Island':'Northeast', 
     'Connecticut':'Northeast', 
     'New York':'Northeast', 
-    'New Jersey,':'Northeast', 
+    'New Jersey':'Northeast', 
     'Pennsylvania':'Northeast'
 }
 
 regionColor = {
-    'West':'#ffa600',
-    'South': '#7a5195',
-    'Midwest': '#ef5675',
-    'Northeast': '#58508d'
+    'West':'#f0c30e',
+    'South': '#00e800',
+    'Midwest': '#1159f5',
+    'Northeast': '#b62fc2'
 }
 
-function color(d) {
-    return regionColor[stateRegions[d.state]];
+stateColor = {
+    'Colorado': d3.interpolate(d3.color('#f0c30e'), d3.color('#c78800'))(0/10), 
+    'California': d3.interpolate(d3.color('#f0c30e'), d3.color('#c78800'))(1/10), 
+    'Washington': d3.interpolate(d3.color('#f0c30e'), d3.color('#c78800'))(2/10),
+    'New Mexico': d3.interpolate(d3.color('#f0c30e'), d3.color('#c78800'))(3/10),
+    'Nevada': d3.interpolate(d3.color('#f0c30e'), d3.color('#c78800'))(4/10),
+    'Oregon': d3.interpolate(d3.color('#f0c30e'), d3.color('#c78800'))(5/10),
+    'Arizona': d3.interpolate(d3.color('#f0c30e'), d3.color('#c78800'))(6/10),
+    'Wyoming': d3.interpolate(d3.color('#f0c30e'), d3.color('#c78800'))(7/10), 
+    'Idaho': d3.interpolate(d3.color('#f0c30e'), d3.color('#c78800'))(8/10), 
+    'Montana': d3.interpolate(d3.color('#f0c30e'), d3.color('#c78800'))(9/10), 
+    'Utah': d3.interpolate(d3.color('#f0c30e'), d3.color('#c78800'))(10/10), 
+
+    'Texas': d3.interpolate(d3.color('#00e800'), d3.color('#008f00'))(0/15),
+    'North Carolina': d3.interpolate(d3.color('#00e800'), d3.color('#008f00'))(1/15), 
+    'West Virginia': d3.interpolate(d3.color('#00e800'), d3.color('#008f00'))(2/15), 
+    'Arkansas': d3.interpolate(d3.color('#00e800'), d3.color('#008f00'))(3/15), 
+    'Virginia': d3.interpolate(d3.color('#00e800'), d3.color('#008f00'))(4/15), 
+    'South Carolina': d3.interpolate(d3.color('#00e800'), d3.color('#008f00'))(5/15), 
+    'Oklahoma': d3.interpolate(d3.color('#00e800'), d3.color('#008f00'))(6/15),
+    'Mississippi': d3.interpolate(d3.color('#00e800'), d3.color('#008f00'))(7/15), 
+    'Tennessee': d3.interpolate(d3.color('#00e800'), d3.color('#008f00'))(8/15), 
+    'Louisiana': d3.interpolate(d3.color('#00e800'), d3.color('#008f00'))(9/15), 
+    'Alabama': d3.interpolate(d3.color('#00e800'), d3.color('#008f00'))(10/15), 
+    'Kentucky': d3.interpolate(d3.color('#00e800'), d3.color('#008f00'))(11/15), 
+    'Maryland': d3.interpolate(d3.color('#00e800'), d3.color('#008f00'))(12/15), 
+    'Florida': d3.interpolate(d3.color('#00e800'), d3.color('#008f00'))(13/15), 
+    'Delaware': d3.interpolate(d3.color('#00e800'), d3.color('#008f00'))(14/15), 
+    'Georgia': d3.interpolate(d3.color('#00e800'), d3.color('#008f00'))(15/15), 
+
+    'Kansas': d3.interpolate(d3.color('#1159f5'), d3.color('#00319c'))(0/11),
+    'North Dakota': d3.interpolate(d3.color('#1159f5'), d3.color('#00319c'))(1/11), 
+    'Wisconsin': d3.interpolate(d3.color('#1159f5'), d3.color('#00319c'))(2/11), 
+    'Nebraska': d3.interpolate(d3.color('#1159f5'), d3.color('#00319c'))(3/11), 
+    'Michigan': d3.interpolate(d3.color('#1159f5'), d3.color('#00319c'))(4/11),
+    'Indiana': d3.interpolate(d3.color('#1159f5'), d3.color('#00319c'))(5/11), 
+    'Missouri': d3.interpolate(d3.color('#1159f5'), d3.color('#00319c'))(6/11), 
+    'Iowa': d3.interpolate(d3.color('#1159f5'), d3.color('#00319c'))(7/11), 
+    'Illinois': d3.interpolate(d3.color('#1159f5'), d3.color('#00319c'))(8/11), 
+    'Minnesota': d3.interpolate(d3.color('#1159f5'), d3.color('#00319c'))(9/11), 
+    'Ohio': d3.interpolate(d3.color('#1159f5'), d3.color('#00319c'))(10/11), 
+    'South Dakota': d3.interpolate(d3.color('#1159f5'), d3.color('#00319c'))(11/11), 
+
+    'Vermont': d3.interpolate(d3.color('#b62fc2'), d3.color('#74107d'))(0/8),
+    'Pennsylvania': d3.interpolate(d3.color('#b62fc2'), d3.color('#74107d'))(1/8),
+    'Maine': d3.interpolate(d3.color('#b62fc2'), d3.color('#74107d'))(2/8),
+    'Rhode Island': d3.interpolate(d3.color('#b62fc2'), d3.color('#74107d'))(3/8),
+    'Massachusetts': d3.interpolate(d3.color('#b62fc2'), d3.color('#74107d'))(4/8),
+    'New York': d3.interpolate(d3.color('#b62fc2'), d3.color('#74107d'))(5/8),
+    'Connecticut': d3.interpolate(d3.color('#b62fc2'), d3.color('#74107d'))(6/8),
+    'New Hampshire': d3.interpolate(d3.color('#b62fc2'), d3.color('#74107d'))(7/8),
+    'New Jersey': d3.interpolate(d3.color('#b62fc2'), d3.color('#74107d'))(8/8),
+}
+
+function color(state) {
+    // return regionColor[stateRegions[state]];
+    return stateColor[state];
 }
 
 Promise.all(promises).then(function(values) {
-    console.log(values);
-
     data = values[0];
     us = values[1]
-    us.features = us.features.filter(d => ['Alaska', 'Hawaii'].indexOf(d.properties.name) === -1)
+    us.features = us.features.filter(d => Object.keys(stateRegions).indexOf(d.properties.name) !== -1)
 
 
     data = data.reduce(function(obj, d) {
@@ -110,7 +160,6 @@ Promise.all(promises).then(function(values) {
 
     chart = new LineChart({
         element: document.querySelector('.chart-container'),
-        // data: data.filter(d => d.state == 'Kansas'),
         data: data,
         selected: global.selectedStates,
         color: color,
@@ -121,7 +170,8 @@ Promise.all(promises).then(function(values) {
     map = new Map({
         element: document.querySelector('.map-container'),
         geoJson: us,
-        selected: global.selectedStates
+        selected: global.selectedStates,
+        color: color
     })
 
     global.registerListener(function(val) {
