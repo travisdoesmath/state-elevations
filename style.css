@@ -1,0 +1,69 @@
+:root {
+  --color: white;
+  --bg-color: #222;
+  --selected: #55E;
+  --selected-hover: #99F;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  margin: 0 auto 4em auto;
+  tab-size: 2;
+  -webkit-text-size-adjust: none;
+  background-color: var(--bg-color);
+  color: var(--color);
+}
+
+.column {
+    max-width: 960px;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+h1 {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -1px;
+    margin: 0.1em 0;
+}
+
+#tooltip {
+  position: fixed;
+  background-color:white;
+  border:solid 1px black;
+  border-radius:5px;
+  padding: 5px 10px;
+}
+
+.line {
+  fill: none;
+  opacity: 0.1;
+}
+
+.line.selected {
+  opacity: 1;
+}
+
+.state {
+  fill:#888;
+  stroke: var(--bg-color);
+  stroke-width: 0.25px;
+}
+
+.state:hover {
+  fill: #AAA;
+}
+
+.state.selected {
+  fill: var(--selected)
+}
+
+.state.selected:hover {
+  fill: var(--selected-hover)
+}
+
+
+
