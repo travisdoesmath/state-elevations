@@ -70,10 +70,10 @@ class LineChart {
         const yAxis = d3.axisLeft()
             .scale(this.yScale)
 
-        this.plot.append("g")
-            .attr("class", "x axis")
-            .attr("transform", `translate(0, ${this.height - (this.margin.top + this.margin.bottom)})`)
-            .call(xAxis)
+        // this.plot.append("g")
+        //     .attr("class", "x axis")
+        //     .attr("transform", `translate(0, ${this.height - (this.margin.top + this.margin.bottom)})`)
+        //     .call(xAxis)
 
         this.plot.append("g")
             .attr("class", "y axis")
