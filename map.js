@@ -6,7 +6,7 @@ class Map {
         this.color = opts.color;
         this.projection = d3.geoAlbers()
             .center([1,38.7])
-            .scale(800)
+            .scale([800])
 
         if(opts.projection) this.x = opts.projection;
         this.geoJson = opts.geoJson;
@@ -15,8 +15,9 @@ class Map {
     }
 
     draw() {
-        this.width = this.element.offsetWidth;
+        
         this.height = document.documentElement.clientHeight * 0.5 * 0.85;
+        this.width = 8/5 * this.height;
         this.margin = {
             top: 20,
             right: 20,
@@ -57,7 +58,7 @@ class Map {
         var m = this.margin;
         this.projection
             .translate([this.width/2, this.height/2])
-            .scale([Math.min((this.height - m.top - m.bottom)*2, (this.width - m.left - m.right)*1.3)])
+            .scale([Math.min((this.height - m.top - m.bottom)*2.2, (this.width - m.left - m.right)*1.45)])
 
         this.path = d3.geoPath()
             .projection(this.projection)
