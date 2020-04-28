@@ -1,6 +1,7 @@
 :root {
   --color: white;
   --bg-color: #222;
+  --unselected-color: #888;
 }
 
 body {
@@ -36,14 +37,19 @@ h1 {
   padding: 5px 10px;
 }
 
-.line {
-  fill: none;
-  opacity: 0.04;
+/* .line-group {
+  opacity: 0.02;
+  stroke: var(--unselected-color);
+  fill: var(--unselected-color);
 }
 
-.line.selected {
+.line-group.selected {
   opacity: 1;
 }
+
+.line {
+  fill: none;
+} */
 
 .state {
   stroke: var(--bg-color);

@@ -3,6 +3,8 @@ class LineChart {
     constructor(opts) {
         this.x = d => d.x;
         this.y = d => d.y;
+        this.y0 = this.y;
+        this.y1 = this.y;
     
         this.data = opts.data;
         this.selected = opts.selected;
@@ -11,6 +13,9 @@ class LineChart {
 
         if(opts.x) this.x = opts.x;
         if(opts.y) this.y = opts.y;
+        if(opts.y0) this.y0 = opts.y0;
+        if(opts.y1) this.y1 = opts.y1;
+
 
         this.draw();
     }
@@ -42,8 +47,8 @@ class LineChart {
 
     createScales() {
         const xMax = d3.max(data.map(d => +d3.max(d.data, this.x)))
-        const yMin = d3.min(data.map(d => +d3.min(d.data, this.y)))
-        const yMax = d3.max(data.map(d => +d3.max(d.data, this.y)))
+        const yMin = d3.min(data.map(d => +d3.min(d.data, this.y0)))
+        const yMax = d3.max(data.map(d => +d3.max(d.data, this.y1)))
 
         this.xScale = d3.scaleLinear()
             .range([0, this.width - this.margin.right - this.margin.left])
@@ -58,6 +63,12 @@ class LineChart {
         this.line = d3.line()
             .x(d => this.xScale(this.x(d)))
             .y(d => this.yScale(this.y(d)))
+
+        this.area = d3.area()
+            .x(d => this.xScale(this.x(d)))
+            .y0(d => this.yScale(this.y0(d)))
+            .y1(d => this.yScale(this.y1(d)))
+
     }
 
     addAxes() {
@@ -80,16 +91,31 @@ class LineChart {
     addLines() {
         let y = this.y;
         let x = this.x;
-        this.plot.selectAll('.line')
+        let elevations = this.plot.selectAll('.line-group')
             .data(this.data)
             .enter()
-            .append('path')
+            .append('g')
             .attr('class', d => d.state)
-            .classed('line', true)
+            .classed('line-group', true)
             .classed('selected', d => this.selected.indexOf(d.state) !== -1)
+            .attr('opacity', d => this.selected.indexOf(d.state) !== -1 ? 1 : 0.05)
+
+        elevations
+            .append('path')
+            .attr('d', d => this.area(d.data))
+            .attr('stroke', d => this.selected.indexOf(d.state) !== -1 ? this.color(d.state) : '#888')
+            .attr('stroke-width', '1px')
+            .attr('stroke-opacity', 0.5)
+            .attr('fill', d => this.selected.indexOf(d.state) !== -1 ? this.color(d.state) : '#888')
+            .attr('fill-opacity', 0.25)
+
+        elevations
+            .append('path')
             .attr('d', d => this.line(d.data))
-            .attr('stroke', d => this.color(d.state))
+            .attr('stroke', d => this.selected.indexOf(d.state) !== -1 ? this.color(d.state) : '#888')
             .attr('stroke-width', '2px')
+            .attr('fill', 'none')
+            
 
     }
 }
