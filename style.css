@@ -1,8 +1,6 @@
 :root {
   --color: white;
   --bg-color: #222;
-  --selected: #55E;
-  --selected-hover: #99F;
 }
 
 body {
@@ -40,7 +38,7 @@ h1 {
 
 .line {
   fill: none;
-  opacity: 0.1;
+  opacity: 0.04;
 }
 
 .line.selected {
@@ -48,22 +46,10 @@ h1 {
 }
 
 .state {
-  /* fill:#888; */
   stroke: var(--bg-color);
   stroke-width: 0.25px;
 }
-/* 
-.state:hover {
-  fill: #AAA;
-}
 
-.state.selected {
-  fill: var(--selected)
-}
-
-.state.selected:hover {
-  fill: var(--selected-hover)
-} */
 
 
 
