@@ -15,8 +15,8 @@ class Map {
     }
 
     draw() {
-        
-        this.height = document.documentElement.clientHeight * 0.5 * 0.85;
+        this.width = this.element.offsetWidth;
+        this.height = Math.min(document.documentElement.clientHeight * 0.5 * 0.85, this.width * 5/8, 315);
         this.width = 8/5 * this.height;
         this.margin = {
             top: 20,
@@ -78,9 +78,6 @@ class Map {
                 let name = d.properties.name
                 global.state = name;
                 this.selected = global.state
-            })
-            .on('mousenter', d => {
-                global.state.indexOf(d.properties.name) === -1
             })
             .classed('selected', d => this.selected.indexOf(d.properties.name) !== -1)
             .attr('fill', d => this.selected.indexOf(d.properties.name) !== -1 ? this.color(d.properties.name) : '#888')

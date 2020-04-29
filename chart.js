@@ -22,11 +22,11 @@ class LineChart {
 
     draw() {
         this.width = this.element.offsetWidth;
-        this.height = document.documentElement.clientHeight * 0.5 * 0.85;
+        this.height = Math.min(document.documentElement.clientHeight * 0.5 * 0.85, 315);
         this.margin = {
             top: 0,
-            right: 20,
-            bottom: 20,
+            right: 0,
+            bottom: 5,
             left: 40
         };
 

@@ -2,8 +2,15 @@ var global = {
     selectedStates: ['Colorado','Kansas'],
     stateListener: function(val) {},
     set state(val) {
-        this.selectedStates.indexOf(val) === -1 ? this.selectedStates.push(val) : this.selectedStates = this.selectedStates.filter(d => d !== val);
-        this.stateListener(val);
+        if (val === []) { 
+            selectedStates = [];
+        } else {
+            this.selectedStates.indexOf(val) === -1 ? this.selectedStates.push(val) : this.selectedStates = this.selectedStates.filter(d => d !== val);
+            this.stateListener(val);
+        }
+    },
+    clear: function() {
+        selectedStates = [];
     },
     registerListener: function(listener) {
         this.stateListener = listener;
@@ -181,7 +188,16 @@ Promise.all(promises).then(function(values) {
         map.selected = this.selectedStates;
         chart.draw();
         map.draw();
-
     })
+
+    d3.select('#clear').on('click', () => {
+        console.log("click")
+        global.selectedStates = [];
+        chart.selected = [];
+        map.selected = [];
+        chart.draw();
+        map.draw();
+    })
+
 });
 
