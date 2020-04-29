@@ -74,9 +74,9 @@ stateRegions = {
 
 regionColor = {
     West: {high:'#f0c30e', low:'#c78800'},
-    South: {high:'#00e800', low:'#008f00'},
-    Midwest: {high:'#427bf5', low:'#023fcf'},
-    Northeast: {high:'#b62fc2', low:'#74107d'}
+    South: {high:'#00e800', low:'#36b536'},
+    Midwest: {high:'#42b6f5', low:'#007ec2'},
+    Northeast: {high:'#b62fc2', low:'#a317b0'}
 }
 
 stateColor = {
